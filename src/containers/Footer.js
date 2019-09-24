@@ -6,16 +6,16 @@ import { connect } from 'react-redux';
 /**
  * Local import
  */
-import Home from 'src/components/Home';
+import Footer from 'src/components/Footer';
 
 
 // Action Creators
-import { dislikes, likes, deleteMovie } from 'src/store/reducer';
+import { pageChange } from 'src/store/reducer';
 
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
   list: state.moviesList,
-  currentCat: state.currentCat,
+  activePage: state.activePage,
 });
 
 /* === Actions === */
@@ -29,16 +29,19 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   deleteMovie: (id) => {
     dispatch(deleteMovie(id));
   },
+  pageChange: (pageNumber) => {
+    dispatch(pageChange(pageNumber));
+  },
 });
 
 // Container
-const HomeContainer = connect(
+const FooterContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Home);
+)(Footer);
 
 
 /**
  * Export
  */
-export default HomeContainer;
+export default FooterContainer;

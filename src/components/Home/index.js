@@ -11,7 +11,7 @@ import { Card, Icon, Image, Button } from 'semantic-ui-react';
  */
 import './index.scss';
 
-const Home = ({ list, dislikes, likes, deleteMovie }) => {
+const Home = ({ list, dislikes, likes, deleteMovie, currentCat }) => {
   const handleDislike = id => () => {
     dislikes(id);
   };
@@ -22,10 +22,11 @@ const Home = ({ list, dislikes, likes, deleteMovie }) => {
   const handleDelete = id => () => {
     deleteMovie(id);
   };
-
+  
+  const filterCat = (currentCat !== 'all' ? list.filter(movie => movie.category == currentCat) : list);
   return (
     <div id="home">
-      {list.map(movie => (
+      {filterCat.map(movie => (
         <Card key={movie.id} id={movie.id}>
           <Button onClick={handleDelete(movie.id)}> <Icon className="trash alternate outline"></Icon></Button>
           {/* <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} /> */}
@@ -52,6 +53,7 @@ Home.propTypes = {
   list: PropsTypes.array.isRequired,
   dislikes: PropsTypes.func.isRequired,
   likes: PropsTypes.func.isRequired,
+  deleteMovie: PropsTypes.func.isRequired,
 };
 
 export default Home;

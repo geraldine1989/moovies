@@ -4,9 +4,9 @@ import movies from '../../movies';
  * Initial State
  */
 const initialState = {
-  message: 'Hello',
-  clic: 0,
   moviesList: movies,
+  activePage: 1,
+  currentCat: 'all',
 };
 
 /**
@@ -16,7 +16,8 @@ const DO_SOMETHING = 'DO_SOMETHING';
 const DISLIKE = 'DISLIKE';
 const LIKE = 'LIKE';
 const DELETE_MOVIE = 'DELETE_MOVIE';
-
+const PAGE_CHANGE = 'PAGE_CHANGE';
+const SELECT_CAT = 'SELECT_CAT';
 /**
  * Traitements
  */
@@ -88,6 +89,17 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         moviesList: deleteMovie,
       };
+    case PAGE_CHANGE:
+    return {
+      ...state,
+      activePage: action.pageNumber,
+    }
+    case SELECT_CAT:
+    return {
+      ...state,
+      currentCat: action.currentCat,
+
+    }
     default:
       return state;
   }
@@ -114,6 +126,14 @@ export const deleteMovie = id => ({
   type: DELETE_MOVIE,
   id,
 });
+export const pageChange = pageNumber => ({
+  type: PAGE_CHANGE,
+  pageNumber,
+});
+export const selectCat = currentCat => ({
+  type: SELECT_CAT,
+  currentCat,
+})
 /**
  * Selectors
  */

@@ -10,7 +10,7 @@ import Home from 'src/components/Home';
 
 
 // Action Creators
-import { dislikes, likes } from 'src/store/reducer';
+import { dislikes, likes, deleteMovie } from 'src/store/reducer';
 
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   likes: (id) => {
     dispatch(likes(id));
+  },
+  deleteMovie: (id) => {
+    dispatch(deleteMovie(id));
   },
 });
 

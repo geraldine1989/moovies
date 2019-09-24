@@ -14,7 +14,8 @@ const initialState = {
  */
 const DO_SOMETHING = 'DO_SOMETHING';
 const DISLIKE = 'DISLIKE';
-const LIKE = 'LIKE'
+const LIKE = 'LIKE';
+const DELETE_MOVIE = 'DELETE_MOVIE';
 
 /**
  * Traitements
@@ -59,7 +60,7 @@ const reducer = (state = initialState, action = {}) => {
     case LIKE:
       let newMoviesListByLiking = moviesList.map((movie) => {
         // if like is unactive
-        if(movie.id === action.id) {
+        if (movie.id === action.id) {
           if (movie.checked !== 'checked') {
             movie.likes++;
           return {
@@ -80,7 +81,13 @@ const reducer = (state = initialState, action = {}) => {
     return {
       ...state,
       moviesList: newMoviesListByLiking,
-    };  
+    };
+    case DELETE_MOVIE:
+      const deleteMovie = moviesList.filter(movie => movie.id !== action.id);
+      return {
+        ...state,
+        moviesList: deleteMovie,
+      };
     default:
       return state;
   }
@@ -93,13 +100,18 @@ export const doSomething = () => ({
   type: DO_SOMETHING,
 });
 
-export const dislikes = (id) => ({
+export const dislikes = id => ({
   type: DISLIKE,
   id,
 });
 
-export const likes = (id) => ({
+export const likes = id => ({
   type: LIKE,
+  id,
+});
+
+export const deleteMovie = id => ({
+  type: DELETE_MOVIE,
   id,
 });
 /**

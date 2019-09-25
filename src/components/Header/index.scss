@@ -1,3 +1,73 @@
-#header {
-    width: 100%;
-}
+
+    #header {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        & #header-title {
+            background-color: #A2E817;
+            color: #141518;
+            font-size: 2em;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+        }
+        & #header-content {
+            display: inline-flex;
+            justify-content: space-between;
+            padding: 1em;
+            width: 80%;
+            & #header-conten-cat {
+                align-items: flex-start;
+                color: white;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                width: 50%;
+                & #category {
+                    align-self: flex-start;
+                    border: 1px solid white;
+                    display: flex;
+                    background-color: white;
+                    border-radius: 15px;
+                    margin: 0;
+                    width: 80%;
+                }
+                & label {
+                    display: flex;
+                    font-size: .8em;
+                    height: 2em;
+                    width: 100%;
+                }
+            }
+            & #header-content-select {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                width: 50%;
+                & #header-content-select-label {
+                    color: white;
+                    display: flex;
+                    justify-content: flex-end;
+                    font-size: .8em;
+                    height: 2em;
+                    width: 100%;
+                }
+                & #header-content-select-buttons {
+                    display: inline-flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                    & button {
+                        background-color: white;
+                        border: 1px solid white;
+                        border-radius: 15px;
+                        color: #141518;
+                        margin-left: .5em;
+                        width: 3em;
+                    }
+                }
+            }
+        }
+    }
+  
+  

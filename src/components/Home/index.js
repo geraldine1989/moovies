@@ -47,7 +47,7 @@ import './index.scss';
         {currentTodos.map(movie => (
           <Card key={movie.id} id={movie.id}>
             <Button onClick={handleDelete(movie.id)}> <Icon className="trash alternate outline"></Icon></Button>
-          <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} /> 
+          <Image src={`src/components/Home/img/${movie.category}.jpg`} wrapped ui={false} /> 
             <Card.Content>
               <Card.Header>{movie.title}</Card.Header>
             </Card.Content>

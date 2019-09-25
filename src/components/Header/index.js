@@ -30,18 +30,32 @@ const Header = ({ list, selectCat, changeItemsPerPage}) => {
   };
   return (
     <div id="header">
-      <select id="category" onChange={handleSelectCat}>
-        <option value="all">All</option>
-        {moviecategories.map(cat => (
+      <div id="header-title"> Movies</div>
+      <div id="header-content">
+        <div id="header-conten-cat">
+          <label>Catégories</label>
+        <select id="category" onChange={handleSelectCat}>
+          <option value="all">All</option>
+          {moviecategories.map(cat => (
           <option key={cat} value={cat}>{cat}</option>
-        )
-        )}
-      </select>
-
-      <button value="4" onClick={handleChangeItemsPerPage}>4</button>
-      <button value="8" onClick={handleChangeItemsPerPage}>8</button>
-      <button value="12" onClick={handleChangeItemsPerPage}>12</button>
+          )
+          )}
+        </select>
+        </div>
       
+      <div id="header-content-select">
+        <div id="header-content-select-label">
+          Vues par pages
+        </div>
+        <div id="header-content-select-buttons">
+          <button id="firstbutton" value="4" onClick={handleChangeItemsPerPage}>4</button>
+          <button value="8" onClick={handleChangeItemsPerPage}>8</button>
+          <button id="secondbutton" value="12" onClick={handleChangeItemsPerPage}>12</button>
+        </div>
+      
+      </div>
+     
+      </div>
     </div>
   );
 };

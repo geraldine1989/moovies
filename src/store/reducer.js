@@ -96,6 +96,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         currentCat: action.currentCat,
+        currentPage: 1,
       }
     case CHANGE_PAGE: 
       return {

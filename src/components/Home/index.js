@@ -32,7 +32,7 @@ const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, tod
   // pagination
   const indexOfLastTodo = currentPage * todosPerPage;
   const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-  const currentTodos = list.slice(indexOfFirstTodo, indexOfLastTodo);
+  
   
   // Numbers Page for the pagination
   const pageNumbers = [];
@@ -40,12 +40,12 @@ const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, tod
           pageNumbers.push(i);
         }
   // Filter per category
-  const filterCat = (currentCat !== 'all' ? currentTodos.filter(movie => movie.category == currentCat) : currentTodos);
-
+  const filterCat = (currentCat !== 'all' ? list.filter(movie => movie.category == currentCat) : list);
+  const currentTodos = filterCat.slice(indexOfFirstTodo, indexOfLastTodo);
   return (
     <div id="home">
       <div id="movies">
-        {filterCat.map(movie => (
+        {currentTodos.map(movie => (
           <Card key={movie.id} id={movie.id}>
             <Button onClick={handleDelete(movie.id)}> <Icon className="trash alternate outline"></Icon></Button>
           {/* <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} /> */}

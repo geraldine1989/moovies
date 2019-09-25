@@ -14,7 +14,6 @@ const initialState = {
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
 const DISLIKE = 'DISLIKE';
 const LIKE = 'LIKE';
 const DELETE_MOVIE = 'DELETE_MOVIE';
@@ -22,6 +21,7 @@ const SELECT_CAT = 'SELECT_CAT';
 const CHANGE_PAGE = 'CHANGE_PAGE';
 const CHANGE_ITEMS_PER_PAGE = 'CHANGE_ITEMS-PER_PAGE';
 const PRECEDENT_PAGE = 'PRECEDENT_PAGE';
+const NEXT_PAGE = 'NEXT_PAGE';
 /**
  * Traitements
  */
@@ -32,15 +32,12 @@ const PRECEDENT_PAGE = 'PRECEDENT_PAGE';
 const reducer = (state = initialState, action = {}) => {
   const { moviesList } = state;
   const { currentPage } = state;
+  const { pageNumbers } =state;
   switch (action.type) {
-    case DO_SOMETHING:
-      return {
-        ...state,
-        clic: state.clic + 1,
-      };
+    /** cards action */
     case DISLIKE:
       let newMoviesList = moviesList.map((movie) => {
-        // if dislike is unactive
+      // if dislike is unactive
         if(movie.id === action.id) {
           if (movie.checked !== 'checked') {
             movie.dislikes++;
@@ -94,7 +91,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         moviesList: deleteMovie,
       };
-    
+    /** Select a category */
     case SELECT_CAT:
       const sectedCat = action.currentCat;
       console.log('cat selectionne ' + sectedCat);
@@ -111,40 +108,49 @@ const reducer = (state = initialState, action = {}) => {
         currentCat: sectedCat,
         currentPage: 1,
         pageNumbers: initPage,
-      }
-    case CHANGE_PAGE: 
-    const newPage = parseInt(action.id);
+      };
+
+    /** Pagination */
+    case CHANGE_PAGE:
+      const newPage = parseInt(action.id);
       return {
         ...state,
         currentPage: newPage,
-
-      }
+      };
     case CHANGE_ITEMS_PER_PAGE:
-        const numberItemsChoice = action.value;
-          const init =[];
-          for (let i = 1; i <= Math.ceil(moviesList.length / numberItemsChoice); i++) {
-            init.push(i);
-          }
-
+      const numberItemsChoice = action.value;
+      const init =[];
+      for (let i = 1; i <= Math.ceil(moviesList.length / numberItemsChoice); i++) {
+        init.push(i);
+      }
       return {
         ...state,
         todosPerPage: numberItemsChoice,
         pageNumbers: init,
       };
     case PRECEDENT_PAGE: 
-    const actuelPage = currentPage;
-    if (actuelPage > 1)  {
-      console.log('page plus grande que 1')
+      const actuelPage = currentPage;
+      if (actuelPage > 1)  {
+        return {
+          ...state,
+          currentPage: actuelPage - 1,
+        };
+      }
       return {
         ...state,
-        currentPage: actuelPage - 1,
+      };
+    case NEXT_PAGE:
+      const actuelPrePage = currentPage;
+      if (actuelPrePage < pageNumbers.length)  {
+        return {
+          ...state,
+          currentPage: actuelPrePage + 1,
+        };
       }
-    } else {
       return {
         ...state,
-      }
-    }
-    
+      };
+
     default:
       return state;
   }
@@ -153,9 +159,6 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const doSomething = () => ({
-  type: DO_SOMETHING,
-});
 
 export const dislikes = id => ({
   type: DISLIKE,
@@ -189,6 +192,10 @@ export const changeItemsPerPage = value => ({
 
 export const precendentPage = () => ({
   type: PRECEDENT_PAGE,
+});
+
+export const nextPage = () => ({
+  type: NEXT_PAGE,
 });
 /**
  * Selectors

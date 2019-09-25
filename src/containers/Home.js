@@ -10,7 +10,7 @@ import Home from 'src/components/Home';
 
 
 // Action Creators
-import { dislikes, likes, deleteMovie, changePage, changeItemsPerPage, precendentPage } from 'src/store/reducer';
+import { dislikes, likes, deleteMovie, changePage, changeItemsPerPage, precendentPage, nextPage } from 'src/store/reducer';
 
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
@@ -40,6 +40,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   precendentPage: () => {
     dispatch(precendentPage());
+  },
+  nextPage: () => {
+    dispatch(nextPage());
   },
 });
 

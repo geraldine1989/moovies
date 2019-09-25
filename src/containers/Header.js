@@ -15,8 +15,6 @@ import { pageChange, selectCat } from 'src/store/reducer';
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
   list: state.moviesList,
-  activePage: state.activePage,
-  currentCat: state.currentCat,
 });
 
 /* === Actions === */

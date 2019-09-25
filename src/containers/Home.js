@@ -10,12 +10,14 @@ import Home from 'src/components/Home';
 
 
 // Action Creators
-import { dislikes, likes, deleteMovie } from 'src/store/reducer';
+import { dislikes, likes, deleteMovie, changePage } from 'src/store/reducer';
 
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
   list: state.moviesList,
   currentCat: state.currentCat,
+  currentPage: state.currentPage,
+  todosPerPage: state.todosPerPage,
 });
 
 /* === Actions === */
@@ -28,6 +30,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   deleteMovie: (id) => {
     dispatch(deleteMovie(id));
+  },
+  changePage: (id) => {
+    dispatch(changePage(id));
   },
 });
 

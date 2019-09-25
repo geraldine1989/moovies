@@ -15,7 +15,8 @@ import { pageChange } from 'src/store/reducer';
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
   list: state.moviesList,
-  activePage: state.activePage,
+  page: state.page,
+  perPage: state.perPage,
 });
 
 /* === Actions === */

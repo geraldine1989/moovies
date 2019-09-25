@@ -26,13 +26,20 @@ const Header = ({ list, selectCat}) => {
   return (
     <div id="header">
       <select id="category" onChange={handleSelectCat}>
-        <option value="all">Category</option>
+        <option value="all">All</option>
         {moviecategories.map(cat => (
           <option key={cat} value={cat}>{cat}</option>
         )
         )}
-        
       </select>
+      <select
+         
+        >
+          <option value="10">Element by page</option>
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="12">12</option>
+        </select>
     </div>
   );
 };

@@ -21,6 +21,7 @@ const DELETE_MOVIE = 'DELETE_MOVIE';
 const SELECT_CAT = 'SELECT_CAT';
 const CHANGE_PAGE = 'CHANGE_PAGE';
 const CHANGE_ITEMS_PER_PAGE = 'CHANGE_ITEMS-PER_PAGE';
+const PRECEDENT_PAGE = 'PRECEDENT_PAGE';
 /**
  * Traitements
  */
@@ -30,6 +31,7 @@ const CHANGE_ITEMS_PER_PAGE = 'CHANGE_ITEMS-PER_PAGE';
  */
 const reducer = (state = initialState, action = {}) => {
   const { moviesList } = state;
+  const { currentPage } = state;
   switch (action.type) {
     case DO_SOMETHING:
       return {
@@ -111,9 +113,10 @@ const reducer = (state = initialState, action = {}) => {
         pageNumbers: initPage,
       }
     case CHANGE_PAGE: 
+    const newPage = parseInt(action.id);
       return {
         ...state,
-        currentPage: action.id,
+        currentPage: newPage,
 
       }
     case CHANGE_ITEMS_PER_PAGE:
@@ -128,6 +131,20 @@ const reducer = (state = initialState, action = {}) => {
         todosPerPage: numberItemsChoice,
         pageNumbers: init,
       };
+    case PRECEDENT_PAGE: 
+    const actuelPage = currentPage;
+    if (actuelPage > 1)  {
+      console.log('page plus grande que 1')
+      return {
+        ...state,
+        currentPage: actuelPage - 1,
+      }
+    } else {
+      return {
+        ...state,
+      }
+    }
+    
     default:
       return state;
   }
@@ -168,6 +185,10 @@ export const changePage = id => ({
 export const changeItemsPerPage = value => ({
   type: CHANGE_ITEMS_PER_PAGE,
   value,
+});
+
+export const precendentPage = () => ({
+  type: PRECEDENT_PAGE,
 });
 /**
  * Selectors

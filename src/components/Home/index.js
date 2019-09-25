@@ -11,7 +11,7 @@ import { Card, Icon, Image, Button } from 'semantic-ui-react';
  */
 import './index.scss';
 
-const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, todosPerPage, changePage, pageNumbers  }) => {
+const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, todosPerPage, changePage, pageNumbers, precendentPage  }) => {
   const handleDislike = id => () => {
     dislikes(id);
   };
@@ -27,8 +27,9 @@ const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, tod
     const newView = e.target.id;
     changePage(newView);
   }
- // const filterCat = (currentCat !== 'all' ? list.filter(movie => movie.category == currentCat) : list);
-
+  const handelPre = () => {
+    precendentPage();
+  }
   // pagination
   const indexOfLastTodo = currentPage * todosPerPage;
   const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
@@ -42,10 +43,13 @@ const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, tod
         {currentTodos.map(movie => (
           <Card key={movie.id} id={movie.id}>
             <Button onClick={handleDelete(movie.id)}> <Icon className="trash alternate outline"></Icon></Button>
-          {/* <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} /> */}
+          <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} /> 
             <Card.Content>
               <Card.Header>{movie.title}</Card.Header>
             </Card.Content>
+            <Card.Description>
+              {movie.category}
+            </Card.Description>
             <Card.Meta>
               <span>{movie.dislikes}<Icon className="thumbs down"></Icon> {movie.likes}<Icon className="thumbs up"></Icon></span>
             </Card.Meta>
@@ -60,6 +64,7 @@ const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, tod
         )}
       </div>
       <div id="pagination">
+        <button onClick={handelPre}><Icon className="angle left"></Icon></button>
         {pageNumbers.map(number =>
           (<button 
             key={number}
@@ -68,6 +73,7 @@ const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, tod
             {number}
           </button>)
         )}
+        <button><Icon className="angle right"></Icon></button>
       </div>
     </div>
   );

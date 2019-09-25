@@ -112,13 +112,16 @@
         bottom: 0;
         position: fixed;
         & button {
-            background-color: #F1F3F4;
-            padding: .2em; 
-            margin: .2em;
+            background-color: #4D4D4D;
+                padding: .2em; 
+                margin: .2em;
+                border: none;
+                color: #E0E1E2;
+            }
         }
     }
 };
-};
+
 @media screen and (min-width: 426px) {
     #home {
         background-color: #141518;
@@ -237,9 +240,11 @@
             bottom: 0;
             position: fixed;
             & button {
-                background-color: #F1F3F4;
+                background-color: #4D4D4D;
                 padding: .2em; 
                 margin: .2em;
+                border: none;
+                color: #E0E1E2;
             }
         }
     };
@@ -362,9 +367,11 @@
             bottom: 0;
             position: fixed;
             & button {
-                background-color: #F1F3F4;
+                background-color: #4D4D4D;
                 padding: .2em; 
                 margin: .2em;
+                border: none;
+                color: #E0E1E2;
             }
         }
     };

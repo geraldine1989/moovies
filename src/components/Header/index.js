@@ -10,6 +10,7 @@ import PropsTypes from 'prop-types';
  * Local import
  */
 import './index.scss';
+import { Icon } from 'semantic-ui-react';
 
 const Header = ({ list, selectCat, changeItemsPerPage }) => {
   const moviecategories = list.reduce(function (newList, currentMovie) {
@@ -30,7 +31,7 @@ const Header = ({ list, selectCat, changeItemsPerPage }) => {
   };
   return (
     <div id="header">
-      <div id="header-title"> Movies</div>
+      <div id="header-title"> M<Icon className="play circle outline"/>vies</div>
       <div id="header-content">
         <div id="header-conten-cat">
           <label>Catégories</label>

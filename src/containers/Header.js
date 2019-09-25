@@ -10,11 +10,13 @@ import Header from 'src/components/Header';
 
 
 // Action Creators
-import { pageChange, selectCat, changeItemsPerPage } from 'src/store/reducer';
+import { changePage, selectCat, changeItemsPerPage } from 'src/store/reducer';
 
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
   list: state.moviesList,
+  pageNumbers: state.pageNumbers,
+  todosPerPage: state.todosPerPage,
 });
 
 /* === Actions === */
@@ -28,8 +30,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   deleteMovie: (id) => {
     dispatch(deleteMovie(id));
   },
-  pageChange: (pageNumber) => {
-    dispatch(pageChange(pageNumber));
+  changePage: (pageNumber) => {
+    dispatch(changePage(pageNumber));
   },
   selectCat: (currentCat) => {
     dispatch(selectCat(currentCat));

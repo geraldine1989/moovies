@@ -11,7 +11,7 @@ import { Card, Icon, Image, Button } from 'semantic-ui-react';
  */
 import './index.scss';
 
-const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, todosPerPage, changePage  }) => {
+const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, todosPerPage, changePage, pageNumbers  }) => {
   const handleDislike = id => () => {
     dislikes(id);
   };
@@ -33,12 +33,6 @@ const Home = ({ list, dislikes, likes, deleteMovie, currentCat, currentPage, tod
   const indexOfLastTodo = currentPage * todosPerPage;
   const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
   
-  
-  // Numbers Page for the pagination
-  const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(list.length / todosPerPage); i++) {
-          pageNumbers.push(i);
-        }
   // Filter per category
   const filterCat = (currentCat !== 'all' ? list.filter(movie => movie.category == currentCat) : list);
   const currentTodos = filterCat.slice(indexOfFirstTodo, indexOfLastTodo);

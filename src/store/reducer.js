@@ -7,7 +7,8 @@ const initialState = {
   moviesList: movies,
   currentCat: 'all',
   currentPage: 1,
-  todosPerPage: 12,  
+  todosPerPage: 12,
+  pageNumbers: [1],
 };
 
 /**
@@ -93,21 +94,40 @@ const reducer = (state = initialState, action = {}) => {
       };
     
     case SELECT_CAT:
+      const sectedCat = action.currentCat;
+      console.log('cat selectionne ' + sectedCat);
+      // recuperation of the number of movies
+      const filteredMovies = moviesList.filter((movie => movie.category === sectedCat) )
+      const initPage =[];
+
+      for (let i = 1; i <= Math.ceil(filteredMovies.length / 4); i++) {
+        initPage.push(i);
+      }
       return {
         ...state,
-        currentCat: action.currentCat,
+        todosPerPage: 4,
+        currentCat: sectedCat,
         currentPage: 1,
+        pageNumbers: initPage,
       }
     case CHANGE_PAGE: 
       return {
         ...state,
         currentPage: action.id,
+
       }
-    case CHANGE_ITEMS_PER_PAGE: 
+    case CHANGE_ITEMS_PER_PAGE:
+        const numberItemsChoice = action.value;
+          const init =[];
+          for (let i = 1; i <= Math.ceil(moviesList.length / numberItemsChoice); i++) {
+            init.push(i);
+          }
+
       return {
         ...state,
-        todosPerPage: action.value,
-      }
+        todosPerPage: numberItemsChoice,
+        pageNumbers: init,
+      };
     default:
       return state;
   }

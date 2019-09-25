@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => ({
   currentCat: state.currentCat,
   currentPage: state.currentPage,
   todosPerPage: state.todosPerPage,
+  pageNumbers: state.pageNumbers,
 });
 
 /* === Actions === */

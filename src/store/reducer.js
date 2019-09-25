@@ -32,8 +32,9 @@ const NEXT_PAGE = 'NEXT_PAGE';
 const reducer = (state = initialState, action = {}) => {
   const { moviesList } = state;
   const { currentPage } = state;
-  const { pageNumbers } =state;
+  const { pageNumbers } = state;
   const {todosPerPage} = state;
+  const {currentCat } = state;
   switch (action.type) {
     /** cards action */
     case DISLIKE:
@@ -95,8 +96,6 @@ const reducer = (state = initialState, action = {}) => {
     /** Select a category */
     case SELECT_CAT:
       const sectedCat = action.currentCat;
-      console.log('cat selectionne ' + sectedCat);
-      console.log('movies ' + moviesList);
       // recuperation of the number of movies
       if (sectedCat === 'all') {
         var filteredMovies = moviesList;
@@ -127,7 +126,18 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_ITEMS_PER_PAGE:
       const numberItemsChoice = action.value;
       const init =[];
-      for (let i = 1; i <= Math.ceil(moviesList.length / numberItemsChoice); i++) {
+      /** TEST */
+      const sectedCatChangePage = currentCat;
+      // recuperation of the number of movies
+      if (sectedCatChangePage === 'all') {
+        var filteredMoviesChangePage = moviesList;
+        console.log('filterd movie all' + filteredMoviesChangePage);
+      } else {
+        var filteredMoviesChangePage = moviesList.filter((movie => movie.category === sectedCatChangePage) );
+        console.log('filterd movie autres' + filteredMoviesChangePage)
+      }
+      /**Test */
+      for (let i = 1; i <= Math.ceil(filteredMoviesChangePage.length / numberItemsChoice); i++) {
         init.push(i);
       }
       return {

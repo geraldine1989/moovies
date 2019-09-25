@@ -252,9 +252,9 @@
             & .cards {
                 background-color: #4D4D4D;
                 box-shadow: none;
-                height: 20%;
+                height: 30%;
                 display: flex;
-                margin: 1em;
+                margin-bottom: 2em;
                 padding: 0;
                 width: 25%;
                 & .cards-picture {
@@ -262,7 +262,7 @@
                     margin: 0;
                     background-color: #313131;
                     & img {
-                        height: 200px;
+                        height: 250px;
                         position: relative;
                         z-index:1;
                         width: 100%;
@@ -309,7 +309,7 @@
                     }
                     & .cart-content-meta {
                         color: #EDEDED;
-                        font-size: .8em;
+                        font-size: .9em;
                         text-align: right;
                         width: 100%;
                     }

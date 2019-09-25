@@ -21,15 +21,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 /* === Actions === */
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  dislikes: (id) => {
-    dispatch(dislikes(id));
-  },
-  likes: (id) => {
-    dispatch(likes(id));
-  },
-  deleteMovie: (id) => {
-    dispatch(deleteMovie(id));
-  },
   changePage: (pageNumber) => {
     dispatch(changePage(pageNumber));
   },

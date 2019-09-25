@@ -47,41 +47,38 @@ import './index.scss';
         {currentTodos.map(movie => (
           <Card key={movie.id} id={movie.id} className="cards">
             <div className="cards-picture">
-              <Button onClick={handleDelete(movie.id)} className="delete"> <Icon className="trash alternate outline"></Icon></Button>
-              <Image src={`src/components/Home/img/${movie.category}.jpg`} wrapped ui={false} /> 
+              <Button onClick={handleDelete(movie.id)} className="delete"> <Icon className="trash alternate outline" /></Button>
+              <Image src={`src/components/Home/img/${movie.category}.jpg`} wrapped ui={false} />
             </div>
             <Card.Content className="cart-content">
               <Card.Header className="cart-content-title">{movie.title}</Card.Header>
               <Card.Meta className="cart-content-meta">
-              <span>{movie.dislikes}<Icon className="thumbs down"></Icon> {movie.likes}<Icon className="thumbs up"></Icon></span>
-            </Card.Meta>
+                <span>{movie.dislikes} <Icon className="thumbs down"/> {movie.likes} <Icon className="thumbs up" /></span>
+              </Card.Meta>
             </Card.Content>
             <Card.Description className="card-description">
               {movie.category}
             </Card.Description>
-            
-            
-              <Button.Group className="card-likes">
-                <Button onClick={handleDislike(movie.id)} className={movie.checkeddislike}><Icon className="thumbs down"></Icon></Button>
-                <Button onClick={handleLike(movie.id)} className={movie.checkedlike}><Icon className="thumbs up"></Icon></Button>
-              </Button.Group>
-          
+            <Button.Group className="card-likes">
+              <Button onClick={handleDislike(movie.id)} className={movie.checkeddislike}><Icon className="thumbs down" /></Button>
+              <Button onClick={handleLike(movie.id)} className={movie.checkedlike}><Icon className="thumbs up" /></Button>
+            </Button.Group>
           </Card>
-        )
-        )}
+        ),)
+        }
       </div>
       <div id="pagination">
-        <button onClick={handelPre}><Icon className="angle left"></Icon></button>
-        {pageNumbers.map(number =>
-          (<button 
-            key={number}
-            id={number}
-            onClick={handleChangePage}>
-            {number}
-          </button>)
-        )}
-        <button onClick={handelnext}><Icon className="angle right"></Icon></button>
-      </div>
+          <button onClick={handelPre}><Icon className="angle left"></Icon></button>
+          {pageNumbers.map(number =>
+            (<button 
+              key={number}
+              id={number}
+              onClick={handleChangePage}>
+              {number}
+            </button>)
+          )}
+          <button onClick={handelnext}><Icon className="angle right"></Icon></button>
+        </div>
     </div>
   );
 };
@@ -91,6 +88,13 @@ Home.propTypes = {
   dislikes: PropsTypes.func.isRequired,
   likes: PropsTypes.func.isRequired,
   deleteMovie: PropsTypes.func.isRequired,
+  currentCat: PropsTypes.string.isRequired,
+  currentPage: PropsTypes.number.isRequired,
+  todosPerPage: PropsTypes.number.isRequired,
+  changePage: PropsTypes.func.isRequired,
+  pageNumbers: PropsTypes.array.isRequired,
+  nextPage: PropsTypes.func.isRequired,
+  precendentPage: PropsTypes.func.isRequired,
 };
 
 export default Home;

@@ -33,7 +33,7 @@ const reducer = (state = initialState, action = {}) => {
   const { moviesList } = state;
   const { currentPage } = state;
   const { pageNumbers } = state;
-  const {todosPerPage} = state;
+  const { todosPerPage } = state;
   const {currentCat } = state;
   switch (action.type) {
     /** cards action */
@@ -68,19 +68,19 @@ const reducer = (state = initialState, action = {}) => {
         if (movie.id === action.id) {
           if (movie.checkedlike !== 'checkedlike') {
             movie.likes++;
-          return {
-            ...movie,
-            checkedlike: 'checkedlike',
-          };
+            return {
+              ...movie,
+              checkedlike: 'checkedlike',
+            };
         // if like is alreadey active
         } else {
           movie.likes --;
-          return {
-            ...movie,
-          checkedlike: 'removecheck',
-        };
-        }     
-      }
+            return {
+              ...movie,
+            checkedlike: 'removecheck',
+            };
+          }     
+        }
       return movie;
     });
     return {
@@ -99,10 +99,8 @@ const reducer = (state = initialState, action = {}) => {
       // recuperation of the number of movies
       if (sectedCat === 'all') {
         var filteredMovies = moviesList;
-        console.log('filterd movie all' + filteredMovies);
       } else {
         var filteredMovies = moviesList.filter((movie => movie.category === sectedCat) );
-        console.log('filterd movie autres' + filteredMovies)
       }
       const initPage =[];
 
@@ -131,10 +129,8 @@ const reducer = (state = initialState, action = {}) => {
       // recuperation of the number of movies
       if (sectedCatChangePage === 'all') {
         var filteredMoviesChangePage = moviesList;
-        console.log('filterd movie all' + filteredMoviesChangePage);
       } else {
         var filteredMoviesChangePage = moviesList.filter((movie => movie.category === sectedCatChangePage) );
-        console.log('filterd movie autres' + filteredMoviesChangePage)
       }
       /**Test */
       for (let i = 1; i <= Math.ceil(filteredMoviesChangePage.length / numberItemsChoice); i++) {

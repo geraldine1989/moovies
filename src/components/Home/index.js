@@ -45,24 +45,27 @@ import './index.scss';
     <div id="home">
       <div id="movies">
         {currentTodos.map(movie => (
-          <Card key={movie.id} id={movie.id}>
-            <Button onClick={handleDelete(movie.id)}> <Icon className="trash alternate outline"></Icon></Button>
-          <Image src={`src/components/Home/img/${movie.category}.jpg`} wrapped ui={false} /> 
-            <Card.Content>
-              <Card.Header>{movie.title}</Card.Header>
-            </Card.Content>
-            <Card.Description>
-              {movie.category}
-            </Card.Description>
-            <Card.Meta>
+          <Card key={movie.id} id={movie.id} className="cards">
+            <div className="cards-picture">
+              <Button onClick={handleDelete(movie.id)} className="delete"> <Icon className="trash alternate outline"></Icon></Button>
+              <Image src={`src/components/Home/img/${movie.category}.jpg`} wrapped ui={false} /> 
+            </div>
+            <Card.Content className="cart-content">
+              <Card.Header className="cart-content-title">{movie.title}</Card.Header>
+              <Card.Meta className="cart-content-meta">
               <span>{movie.dislikes}<Icon className="thumbs down"></Icon> {movie.likes}<Icon className="thumbs up"></Icon></span>
             </Card.Meta>
-            <Card.Content extra>
-              <Button.Group>
-                <Button onClick={handleDislike(movie.id)} ><Icon className="thumbs down"></Icon></Button>
-                <Button onClick={handleLike(movie.id)}><Icon className="thumbs up"></Icon></Button>
-              </Button.Group>
             </Card.Content>
+            <Card.Description className="card-description">
+              {movie.category}
+            </Card.Description>
+            
+            
+              <Button.Group className="card-likes">
+                <Button onClick={handleDislike(movie.id)} className={movie.checkeddislike}><Icon className="thumbs down"></Icon></Button>
+                <Button onClick={handleLike(movie.id)} className={movie.checkedlike}><Icon className="thumbs up"></Icon></Button>
+              </Button.Group>
+          
           </Card>
         )
         )}

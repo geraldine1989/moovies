@@ -40,18 +40,18 @@ const reducer = (state = initialState, action = {}) => {
       let newMoviesList = moviesList.map((movie) => {
       // if dislike is unactive
         if(movie.id === action.id) {
-          if (movie.checked !== 'checked') {
+          if (movie.checkeddislike !== 'checkeddislike') {
             movie.dislikes++;
           return {
             ...movie,
-            checked: 'checked',
+            checkeddislike: 'checkeddislike',
           };
         // if dislike is alreadey active
         } else {
           movie.dislikes --;
           return {
             ...movie,
-          checked: '',
+          checkeddislike: 'removecheck',
         };
         }     
       }
@@ -65,18 +65,18 @@ const reducer = (state = initialState, action = {}) => {
       let newMoviesListByLiking = moviesList.map((movie) => {
         // if like is unactive
         if (movie.id === action.id) {
-          if (movie.checked !== 'checked') {
+          if (movie.checkedlike !== 'checkedlike') {
             movie.likes++;
           return {
             ...movie,
-            checked: 'checked',
+            checkedlike: 'checkedlike',
           };
         // if like is alreadey active
         } else {
           movie.likes --;
           return {
             ...movie,
-          checked: '',
+          checkedlike: 'removecheck',
         };
         }     
       }

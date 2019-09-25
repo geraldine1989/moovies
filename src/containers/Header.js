@@ -10,7 +10,7 @@ import Header from 'src/components/Header';
 
 
 // Action Creators
-import { pageChange, selectCat } from 'src/store/reducer';
+import { pageChange, selectCat, changeItemsPerPage } from 'src/store/reducer';
 
 /* === State (données) === */
 const mapStateToProps = (state, ownProps) => ({
@@ -33,6 +33,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   selectCat: (currentCat) => {
     dispatch(selectCat(currentCat));
+  },
+  changeItemsPerPage: (value) => {
+    dispatch(changeItemsPerPage(value));
   },
 });
 

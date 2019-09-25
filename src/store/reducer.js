@@ -7,7 +7,7 @@ const initialState = {
   moviesList: movies,
   currentCat: 'all',
   currentPage: 1,
-  todosPerPage: 4,  
+  todosPerPage: 12,  
 };
 
 /**
@@ -19,6 +19,7 @@ const LIKE = 'LIKE';
 const DELETE_MOVIE = 'DELETE_MOVIE';
 const SELECT_CAT = 'SELECT_CAT';
 const CHANGE_PAGE = 'CHANGE_PAGE';
+const CHANGE_ITEMS_PER_PAGE = 'CHANGE_ITEMS-PER_PAGE';
 /**
  * Traitements
  */
@@ -101,6 +102,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         currentPage: action.id,
       }
+    case CHANGE_ITEMS_PER_PAGE: 
+      return {
+        ...state,
+        todosPerPage: action.value,
+      }
     default:
       return state;
   }
@@ -136,6 +142,11 @@ export const selectCat = currentCat => ({
 export const changePage = id => ({
   type: CHANGE_PAGE,
   id,
+});
+
+export const changeItemsPerPage = value => ({
+  type: CHANGE_ITEMS_PER_PAGE,
+  value,
 });
 /**
  * Selectors
